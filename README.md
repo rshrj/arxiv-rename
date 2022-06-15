@@ -5,12 +5,22 @@ It creates a slug of the form `<id>-<authors>-<title>` and renames the original 
 
 Another utility called `arxiv-watcher` can be used to watch for new (or moved) files in a directory and rename them.
 
+## Installation
+
+```bash
+pip install arxiv_rename
+```
 ## Usage
 
-```
-python arxiv-renamer.py <path>
-```
+```bash
+    usage: arxiv_rename [-h] [-w] PATH
 
-```
-python arxiv-watcher.py <watch dir>
+    Rename PDFs downloaded from arXiv.org
+
+    positional arguments:
+    PATH         path to arXiv PDF or a folder of arXiv PDFs
+
+    optional arguments:
+    -h, --help   show this help message and exit
+    -w, --watch  watch for new files in the folder specified by PATH
 ```

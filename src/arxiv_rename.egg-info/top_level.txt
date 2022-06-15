@@ -1,1 +1,1 @@
-arxiv-rename
+arxiv_rename

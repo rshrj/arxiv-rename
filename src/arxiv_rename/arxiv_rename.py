@@ -3,10 +3,15 @@ from slugify import slugify
 import sys
 from os import path, rename
 
+from arxiv_rename.arxiv_detect import detect_arxiv
+
 
 def arxivRename(filepath):
     filename = path.basename(filepath)
     arxiv_id = filename[:filename.rfind('.')]
+
+    if not detect_arxiv(filename):
+        return
 
     result = list(arxiv.Search(id_list=[arxiv_id]).results())[0]
 

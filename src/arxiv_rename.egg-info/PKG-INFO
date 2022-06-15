@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: arxiv-rename
-Version: 0.0.1
+Version: 0.0.2
 Summary: arxiv-rename: a python package for renaming files downloaded from arXiv
 Home-page: https://github.com/rshrj/arxiv-rename
 Author: Rishi Raj
