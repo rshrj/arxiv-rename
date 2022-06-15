@@ -13,14 +13,14 @@ pip install arxiv_rename
 ## Usage
 
 ```bash
-    usage: arxiv_rename [-h] [-w] PATH
+usage: arxiv_rename [-h] [-w] PATH
 
-    Rename PDFs downloaded from arXiv.org
+Rename PDFs downloaded from arXiv.org
 
-    positional arguments:
-    PATH         path to arXiv PDF or a folder of arXiv PDFs
+positional arguments:
+PATH         path to arXiv PDF or a folder of arXiv PDFs
 
-    optional arguments:
-    -h, --help   show this help message and exit
-    -w, --watch  watch for new files in the folder specified by PATH
+optional arguments:
+-h, --help   show this help message and exit
+-w, --watch  watch for new files in the folder specified by PATH
 ```
