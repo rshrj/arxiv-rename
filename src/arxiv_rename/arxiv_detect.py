@@ -35,11 +35,24 @@ RE_NUM_NEW = RE_DATE + r'(?:[.]\d{4,5})' + RE_VERSION
 RE_NUM_OLD = RE_DATE + r'(?:\d{3})' + RE_VERSION
 
 # matches: 1612.00001 1203.0023v2
-RE_ID_NEW = r'(?:{}).pdf$'.format(RE_NUM_NEW)
+RE_ID_NEW = r'(?:{})'.format(RE_NUM_NEW)
 
 # matches: hep-th/11030234 cs/0112345v2 cs.AI/0112345v2
-RE_ID_OLD = r'(?:{}/{}).pdf$'.format(RE_CATEGORIES, RE_NUM_OLD)
+RE_ID_OLD = r'(?:{}/{})'.format(RE_CATEGORIES, RE_NUM_OLD)
+
+RE_ID_OLD_WITHOUT_CAT = r'(?:{})'.format(RE_NUM_OLD)
+
 
 def detect_arxiv(name):
+    withoutCat = re.compile(RE_ID_OLD_WITHOUT_CAT)
     arxivreg = re.compile(RE_ID_NEW + r'|' + RE_ID_OLD)
+
+    # i = 1
+    # while (i <= 3) and withoutCat.search(name) and not arxivreg.search(name):
+    #     cat = input(
+    #         f'{f"[{3-i} tries remaining] " if i > 1 else ""}Enter category for {name} (e.g. hep-th): ')
+    #     if arxivreg.search(cat + '/' + name):
+    #         name = cat + '/' + name
+    #     i = i + 1
+
     return bool(arxivreg.search(name))

@@ -21,12 +21,12 @@ def arxivRename(filepath):
 
     slug = slugify(arxiv_id + ' ' + authors + ' ' + title) + '.pdf'
 
-    print(arxiv_id + ': ' + title)
+    print(f'{filename} --> {slug}')
 
     try:
         rename(filepath, path.dirname(filepath) + '/' + slug)
     except Exception as e:
-        print('Error renaming ' + filepath)
+        print('Error renaming ' + filepath + ' : ' + str(e))
 
 
 def main():

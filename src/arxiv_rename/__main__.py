@@ -7,6 +7,8 @@ from arxiv_rename.arxiv_detect import detect_arxiv
 
 from arxiv_rename.arxiv_rename import arxivRename
 from arxiv_rename.arxiv_watcher import scheduleWatcher
+# from arxiv_rename.arxiv_download import arxiv_download
+
 
 def main():
     prog_parser = argparse.ArgumentParser(
@@ -15,14 +17,20 @@ def main():
 
     )
 
-    prog_parser.add_argument('path', metavar='PATH', type=str, help="path to arXiv PDF or a folder of arXiv PDFs")
+    prog_parser.add_argument('path', metavar='PATH', type=str,
+                             help="path to arXiv PDF or a folder of arXiv PDFs")
 
-    prog_parser.add_argument('-w', '--watch', action='store_true', help="watch for new files in the folder specified by PATH")
+    prog_parser.add_argument('-w', '--watch', action='store_true',
+                             help="watch for new files in the folder specified by PATH")
+
+    # prog_parser.add_argument(
+    #     '-d', '--download', metavar="PAPER IDs", action='store', help="space-separated list, download the papers to PATH")
 
     args = prog_parser.parse_args()
 
     input_path = args.path
     to_watch = args.watch
+    # download_ids = args.download
 
     if not os.path.exists(input_path):
         print('The path specified does not exist')
@@ -46,9 +54,9 @@ def main():
                     # print(file_path)
                     arxivRename(file_path)
 
-                    
+    # if download_ids:
+    #     arxiv_download(download_ids, input_path)
 
-    
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()
