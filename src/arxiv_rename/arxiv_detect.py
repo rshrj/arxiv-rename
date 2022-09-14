@@ -40,6 +40,15 @@ RE_ID_NEW = r'(?:{}).pdf$'.format(RE_NUM_NEW)
 # matches: hep-th/11030234 cs/0112345v2 cs.AI/0112345v2
 RE_ID_OLD = r'(?:{}/{}).pdf$'.format(RE_CATEGORIES, RE_NUM_OLD)
 
+# matches: 11030234 0112345v2 0112345v2
+RE_ID_OLD_NO_CAT = r'(?:{}).pdf$'.format(RE_NUM_OLD)
+
+
 def detect_arxiv(name):
     arxivreg = re.compile(RE_ID_NEW + r'|' + RE_ID_OLD)
+    return bool(arxivreg.search(name))
+
+
+def detect_arxiv_no_cat(name):
+    arxivreg = re.compile(RE_ID_OLD_NO_CAT)
     return bool(arxivreg.search(name))

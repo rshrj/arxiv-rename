@@ -3,7 +3,7 @@ from slugify import slugify
 import sys
 from os import path, rename
 
-from arxiv_rename.arxiv_detect import detect_arxiv
+from arxiv_rename.arxiv_detect import detect_arxiv, detect_arxiv_no_cat
 
 
 def arxivRename(filepath):
@@ -11,7 +11,14 @@ def arxivRename(filepath):
     arxiv_id = filename[:filename.rfind('.')]
 
     if not detect_arxiv(filename):
-        return
+        if not detect_arxiv_no_cat(filename):
+            return
+        cat = input(f'Enter the category for {filename} (default: hep-th): ')
+        prefix = ('hep-th' if cat == '' else cat) + '/'
+        if not detect_arxiv(prefix + filename):
+            print('Invalid category name entered')
+            return
+        arxiv_id = prefix + arxiv_id
 
     result = list(arxiv.Search(id_list=[arxiv_id]).results())[0]
 
